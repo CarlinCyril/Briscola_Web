@@ -11,6 +11,8 @@ import { QuickSearchComponent } from './quick-search/quick-search.component';
 import { PlayMenuComponent } from './play-menu/play-menu.component';
 import { CreateGameComponent } from './play-menu/create-game/create-game.component';
 import { OngoingGamesComponent } from './play-menu/ongoing-games/ongoing-games.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,10 @@ import { OngoingGamesComponent } from './play-menu/ongoing-games/ongoing-games.c
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
