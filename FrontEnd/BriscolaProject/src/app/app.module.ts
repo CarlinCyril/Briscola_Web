@@ -13,6 +13,8 @@ import { CreateGameComponent } from './play-menu/create-game/create-game.compone
 import { OngoingGamesComponent } from './play-menu/ongoing-games/ongoing-games.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RulesComponent } from './rules/rules.component';
+import { BriscolaRuleComponent } from './rules/briscola-rule/briscola-rule.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     QuickSearchComponent,
     PlayMenuComponent,
     CreateGameComponent,
-    OngoingGamesComponent
+    OngoingGamesComponent,
+    RulesComponent,
+    BriscolaRuleComponent
   ],
   imports: [
     BrowserModule,
