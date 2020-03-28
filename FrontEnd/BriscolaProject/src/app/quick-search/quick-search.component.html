@@ -1,0 +1,33 @@
+<div class="container p-4" id="quick-search">
+    <h2 class="text-center">What do you want to do?</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <form action="">
+                    <fieldset class="">
+                        <div class="form-group">
+                            <h4 class="ml-3 mb-4">Search for a game</h4>
+                            <input id="typeahead-http" type="text" class="form-control mx-sm-3"
+                                [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search"
+                                placeholder="Game's name" />
+                            <small *ngIf="searching" class="form-text text-muted">searching...</small>
+                            <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <form action="">
+                    <fieldset class="">
+                        <div class="form-group">
+                            <h4>Create a new game</h4>
+                            <button class="btn btn-light px-4">Create</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
