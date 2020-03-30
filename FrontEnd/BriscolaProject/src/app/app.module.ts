@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RulesComponent } from './rules/rules.component';
 import { BriscolaRuleComponent } from './rules/briscola-rule/briscola-rule.component';
+import { BriscolaGameComponent } from './play-menu/briscola-game/briscola-game.component';
+import { TableGameComponent } from './play-menu/table-game/table-game.component';
+import { CardComponent } from './play-menu/card/card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { BriscolaRuleComponent } from './rules/briscola-rule/briscola-rule.compo
     CreateGameComponent,
     OngoingGamesComponent,
     RulesComponent,
-    BriscolaRuleComponent
+    BriscolaRuleComponent,
+    BriscolaGameComponent,
+    TableGameComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
