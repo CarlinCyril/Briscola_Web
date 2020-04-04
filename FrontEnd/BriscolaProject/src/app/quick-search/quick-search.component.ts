@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, tap, switchMap} from 'rxjs/operators';
-import { WikipediaService } from '../party-finder.service';
+import { WikipediaService } from '../services/party-finder.service';
 
 @Component({
   selector: 'app-quick-search',
