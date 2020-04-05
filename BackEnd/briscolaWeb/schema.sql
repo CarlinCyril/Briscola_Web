@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS briscolaGame;
+DROP TABLE IF EXISTS player;
+
+CREATE TABLE briscolaGame (
+  id TEXT PRIMARY KEY,
+  numPlayers INTEGER DEFAULT 0,
+  maxNumPlayers INTEGER NOT NULL,
+  gameStatus TEXT NOT NULL
+);
+
+CREATE TABLE player (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT NOT NULL,
+  game TEXT NOT NULL,
+  team INTEGER NOT NULL,
+  FOREIGN KEY (game) REFERENCES briscolaGame (id)
+);

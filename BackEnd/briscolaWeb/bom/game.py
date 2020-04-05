@@ -14,24 +14,27 @@ class Game:
     Attributes:
     deck (Deck): the deck of cards for the game.
     id (str): unique id for the game (32-character hexadecimal string).
-    isFull (bool): True if the number of players of the game has been reached.
-    numPlayers (int): number of players of the game (can be 2,3,4 or 5).
+    name (str): name of the game.
+    status (str): current status of the game (PENDING (waiting for players), READY (enough players have joined), ONGOING or OVER)
+    maxNumPlayers (int): max number of players of the game (can be 2,3,4 or 5).
     teams (list of Team): list of the teams in the game (can be 2 or 3).
     players (list of Player): list of all the players in the game.
     briscola (str): briscola suit for the game.
     currentPlayer (Player): the player whose turn it is currently.
     currentDeal (Deal): the current Deal which is being played.
 
+
     """
 
     deck = Deck()
 
-    def __init__(self, player: Player, numPlayers: int) -> None:
+    def __init__(self, player: Player, name: str, maxNumPlayers: int) -> None:
         # Game is initialized when 1 player joins
         #Generate unique id for game
         self.id = uuid.uuid1().hex
-        self.isFull = False
-        self.numPlayers = numPlayers
+        self.name = name
+        self.status = "PENDING"
+        self.maxNumPlayers = maxNumPlayers
         firstTeam = Team(player)
         # Team index in the array will be used as its id
         self.teams = [firstTeam]
@@ -40,6 +43,19 @@ class Game:
         self.briscola = None
         self.currentPlayer = None
         self.currentDeal = None
+
+    def isFull(self) -> bool:
+        """ Checks if the max number of players in the game has been reached.
+
+        Args:
+            None.
+
+        Returns:
+            True if the number of players of the game has been reached, False otherwise.
+
+        """
+        return len(self.players) == self.maxNumPlayers
+        
 
     def addPlayer(self, player: Player) -> bool:
         """ Adds a player to the game (if it is not full) and assigns it to a team
@@ -51,12 +67,11 @@ class Game:
             True if player has been added, False otherwise.
 
         """
-        if (not self.isFull):
-            if (self.numPlayers == 2):
+        if (not self.isFull()):
+            if (self.maxNumPlayers == 2):
                 secondTeam = Team(player)
                 self.teams.append(secondTeam)
                 self.players.append(player)
-                self.isFull = True
                 return True
             #TODO: add elif for 3,4 and 5 players
         else:
@@ -74,6 +89,7 @@ class Game:
             None.
 
         """
+        self.status = "ONGOING"
         self.deck.shuffle()
         # Draw briscola and set it as the last card of the deck
         briscolaCard = self.deck.drawCard()
@@ -81,11 +97,11 @@ class Game:
         self.deck.cards.append(briscolaCard)
         #Choose random player to start
         #TODO: add handling for >2 players
-        starterPlayerIndex = random.randint(0,self.numPlayers)
+        starterPlayerIndex = random.randint(0,self.maxNumPlayers)
         self.currentPlayer = self.players[starterPlayerIndex]
         # Deal initial cards (3)
         #TODO: diff nr of cards for 5 players
-        self.dealCards(starterPlayerIndex, 3, self.numPlayers)
+        self.dealCards(starterPlayerIndex, 3, self.maxNumPlayers)
 
     def dealCards(self, firstPlayer:int, numCards: int, numPlayers: int) -> None:
         """ Deals cards to each player.
