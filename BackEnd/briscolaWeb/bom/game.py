@@ -14,6 +14,7 @@ class Game:
     Attributes:
     deck (Deck): the deck of cards for the game.
     id (str): unique id for the game (32-character hexadecimal string).
+    gameType (str): game type (for now, only briscola is possible)
     name (str): name of the game.
     status (str): current status of the game (PENDING (waiting for players), READY (enough players have joined), ONGOING or OVER)
     maxNumPlayers (int): max number of players of the game (can be 2,3,4 or 5).
@@ -28,10 +29,11 @@ class Game:
 
     deck = Deck()
 
-    def __init__(self, player: Player, name: str, maxNumPlayers: int) -> None:
+    def __init__(self, player: Player, name: str, gameType: str, maxNumPlayers: int) -> None:
         # Game is initialized when 1 player joins
         #Generate unique id for game
         self.id = uuid.uuid1().hex
+        self.gameType = gameType
         self.name = name
         self.status = "PENDING"
         self.maxNumPlayers = maxNumPlayers
@@ -118,7 +120,7 @@ class Game:
         for i in range(numCards * numPlayers):
             self.players[(i + firstPlayer)%numPlayers].addCardToHand(self.deck.drawCard())
 
-class Deal:
+class BriscolaDeal:
 
     """
     A class used to represent a deal - the play from the time the cards are dealt until they are redealt.

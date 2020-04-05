@@ -3,6 +3,7 @@ import os
 from flask import Flask
 
 from . import db
+from . import rest
 
 def create_app(test_config=None):
     # create and configure the app
@@ -26,10 +27,12 @@ def create_app(test_config=None):
         pass
     
     db.init_app(app)
-    
-    # a simple page that says hello
+
+    # TODO: remove - a simple page that says hello
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+    
+    app.register_blueprint(rest.bp)
 
     return app
