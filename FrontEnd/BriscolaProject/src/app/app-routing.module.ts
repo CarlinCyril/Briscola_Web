@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
-import { PlayMenuComponent } from './play-menu/play-menu.component';
 import { CreateGameComponent } from './play-menu/create-game/create-game.component';
 import { OngoingGamesComponent } from './play-menu/ongoing-games/ongoing-games.component';
 import { RulesComponent } from './rules/rules.component';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from '../card/card';
+import { Card } from '../../models/card';
 
 @Component({
   selector: 'app-table-game',
