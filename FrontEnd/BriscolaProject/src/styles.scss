@@ -3,7 +3,12 @@
 
 body {
     font-family: 'Trattatello', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
     background-image: url(assets/img/medieval_inn.png);
     height: 100vh;
 }
+
+@media (min-width: 1025px) {
+    html {
+        font-size: 150%;
+    }
+  }

@@ -38,6 +38,8 @@ export class GameFinderService {
   }
 
   getGame(UUID: string) {
+    // Just for testing purpose
+    return new Game("Cyril's party", "Briscola", 4)
     let result = this.http.get(this.endpointUrl + '/' + UUID);
     console.log(result);
     return result;

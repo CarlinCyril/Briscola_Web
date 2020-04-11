@@ -2,6 +2,7 @@ import { Player } from './player';
 
 export class Game {
 
+    public uuid: string
     public name: string;
     public gameType: string;
     public numMaxPlayers: number;

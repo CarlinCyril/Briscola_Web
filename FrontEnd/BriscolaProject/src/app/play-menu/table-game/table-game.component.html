@@ -1,5 +1,10 @@
 <div class="container w-100 h-100">
-    <div id="table-game"></div>
+    <div>
+        <div class="player"><span class="material-icons">person</span></div>
+        <div class="player"><span class="material-icons">person</span></div>
+        <div id="table-game"></div>
+        <div class="player"><span class="material-icons">person</span></div>
+    </div>
     <div class="card-list-container d-flex justify-content-center">
         <div class="card-container" *ngFor="let card of listPlayerCards">
             <app-card [card]="card" (clickedCardEmitter)="clickedCard($event)"></app-card>
