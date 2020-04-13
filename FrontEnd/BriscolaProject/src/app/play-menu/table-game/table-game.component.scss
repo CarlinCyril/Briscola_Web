@@ -9,4 +9,22 @@
 .room {
     height: 90vh;
     padding-top: 20vh;
+
+    .player {
+        span {
+            position: absolute;
+            font-size: 9rem;
+            &.a {
+                top: 30%;
+            }
+            &.b {
+                left: 40%;
+                top: 0%;
+            }
+            &.c {
+                top: 30%;
+                left: 80%;
+            }
+        }
+    }
 }
