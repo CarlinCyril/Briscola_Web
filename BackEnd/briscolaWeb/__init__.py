@@ -2,8 +2,6 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from . import errors
-
 db = SQLAlchemy()
 
 def create_app(test_config=None):
@@ -13,7 +11,8 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         #DATABASE=os.path.join(app.instance_path, 'briscola.sqlite'),
         SQLALCHEMY_DATABASE_URI= os.environ.get('DATABASE_URL') or \
-            'sqlite:///' + os.path.join(app.instance_path, 'briscolaWeb.db')
+            'sqlite:///' + os.path.join(app.instance_path, 'briscolaWeb.db'),
+        SQLALCHEMY_TRACK_MODIFICATIONS = False
     )
 
     if test_config is None:
@@ -40,8 +39,7 @@ def create_app(test_config=None):
 
         # Register blueprints
         app.register_blueprint(routes.bp)
-        app.register_blueprint(errors.bp)
-
+        
         return app
 
 

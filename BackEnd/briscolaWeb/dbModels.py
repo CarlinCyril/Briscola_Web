@@ -22,7 +22,7 @@ class DbPlayer(db.Model):
 class DbGame(db.Model):
     __tablename__ = 'game'
     id = db.Column(db.String(64), primary_key=True, unique=True, nullable=False)
-    gameName = db.Column(db.String(64), unique=False, nullable=False)
+    gameName = db.Column(db.String(64), unique=True, nullable=False)
     gameType = db.Column(db.String(64), unique=False, nullable=False)
     numPlayers = db.Column(db.Integer, nullable=False, default=0)
     maxNumPlayers = db.Column(db.Integer, nullable=False)
