@@ -1,16 +1,19 @@
 import os
-
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-from . import db, rest, errors
+from . import errors
 
+db = SQLAlchemy()
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=False)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'briscola.sqlite'),
+        #DATABASE=os.path.join(app.instance_path, 'briscola.sqlite'),
+        SQLALCHEMY_DATABASE_URI= os.environ.get('DATABASE_URL') or \
+            'sqlite:///' + os.path.join(app.instance_path, 'briscolaWeb.db')
     )
 
     if test_config is None:
@@ -25,10 +28,21 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    
-    db.init_app(app)
-    
-    app.register_blueprint(rest.bp)
-    app.register_blueprint(errors.bp)
 
-    return app
+    # Init DB (https://hackersandslackers.com/flask-sqlalchemy-database-models/)
+    db.init_app(app)
+
+    with app.app_context():
+        from . import routes
+
+        # Create tables for our models
+        db.create_all()
+
+        # Register blueprints
+        app.register_blueprint(routes.bp)
+        app.register_blueprint(errors.bp)
+
+        return app
+
+
+
