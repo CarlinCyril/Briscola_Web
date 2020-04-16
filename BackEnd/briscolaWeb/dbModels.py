@@ -5,7 +5,7 @@ class DbPlayer(db.Model):
     id = db.Column(db.Integer,primary_key=True, nullable=False)
     username = db.Column(db.String(64), unique=False, nullable=False)
     game = db.Column(db.String(64), db.ForeignKey('game.id'), unique=False, nullable=False)
-    team = db.Column(db.Integer, nullable=False)
+    team = db.Column(db.Integer, nullable=False, default=1)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
