@@ -4,8 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_socketio import SocketIO
 
 db = SQLAlchemy()
+socketio = SocketIO()
 
 def create_app(test_config=None):
+
+
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_mapping(
@@ -32,7 +36,7 @@ def create_app(test_config=None):
     # Init DB (https://hackersandslackers.com/flask-sqlalchemy-database-models/)
     db.init_app(app)
 
-    socketio = SocketIO(app)
+    socketio.init_app(app)
 
     with app.app_context():
         from . import routes
